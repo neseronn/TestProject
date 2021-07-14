@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include <conio.h>
 #include <Windows.h>
 
 #define SIZECHAR 50
 
 enum menu {EXIT, ADD_STUDENT, PRINT_STUDENT,
-		   PRINT_ALL_STUDENT, WRITE_INTO_FILE,
-		   CLEAR_FILE};
+		   PRINT_ALL_STUDENT, WRITE_INTO_FILE};
 
 void f()
 {
@@ -28,6 +28,8 @@ struct StudentBaseDate
     StudentBaseDate* next; 
 };
 
+void ReadFromFile(StudentBaseDate* head);
+void WriteIntoFile(StudentBaseDate* head);
 
 void _tmain()
 {
@@ -52,6 +54,14 @@ void _tmain()
 			  << std::endl;
 	std::cout<< "|===========================================|";
 
+	StudentBaseDate* head = new StudentBaseDate; 
+    head->next = NULL;
+    head->id = 0;
+    ReadFromFile(head);
+
+	// комент
+	
+
 	do
 	{
 		CmdMenu = Menu();
@@ -60,10 +70,127 @@ void _tmain()
 			case EXIT:
 				return;
 				break;
-			
+			case PRINT_ALL_STUDENT:
+			{
+				StudentBaseDate* buffer = head->next;  
+				while (buffer->next != NULL)
+				// ���� �� ����� �� ����������
+				{
+					std::cout << std::endl;
+					std::cout << "id - " << buffer->id 
+					<< std::endl;
+					std::cout << "������: " << buffer->group 
+					<< std::endl;
+					std::cout << "������� � ��� ��������: "
+					<< buffer->surname 
+					<< ' '<<buffer->name << std::endl;
+					std::cout << "����� �������� ������: " 
+					<< buffer->Credit�ard << std::endl;
+					std::cout << "��������� � �����: "
+					<< buffer->stipend<<std::endl;
+					std::cout << "��������� �� �������: "
+					<< buffer->SumStipend<<std::endl;
+
+					buffer = buffer->next; 
+					// ������ ��������� ��� �������� ���������
+				}
+				std::cout << std::endl;
+				std::cout << "id - " << buffer->id 
+				<< std::endl;
+				std::cout << "������: " << buffer->group 
+				<< std::endl;
+				std::cout << "������� � ��� ��������: "
+				<< buffer->surname 
+				<< ' '<<buffer->name 
+				<< std::endl;
+				std::cout << "����� �������� ������: " 
+				<< buffer->Credit�ard 
+				<< std::endl;
+				std::cout << "��������� � �����: "
+				<< buffer->stipend
+				<<std::endl;
+				std::cout << "��������� �� �������: "
+				<< buffer->SumStipend
+				<<std::endl;
+			}
+			break;
+			case WRITE_INTO_FILE:
+			{
+				WriteIntoFile(head);
+			}	
+			break;
 		}
 	}while(true);
 	system("pause");
+}
+
+void ReadFromFile(StudentBaseDate* head) // ������ �� �����
+{
+    StudentBaseDate* buffer; // ����� ��� �������� ������
+
+    std::ifstream file;
+    file.open("StudentBaseDate.txt");  // ��������� ����
+    if (file.is_open()) //��������� �������� ��
+    {
+        buffer = head; // ����� ��������� �� ������ ������
+        while(!file.eof()) // ���� ���� �� ����������
+        {
+			 // ������ ����������� ����� ���������
+            StudentBaseDate* NewElement = new StudentBaseDate; 
+            file >> NewElement->group; // ��������� �� �� �����
+            file >> NewElement->surname;
+			file >> NewElement->name;
+			file >> NewElement->Credit�ard;
+			file >> NewElement->stipend;
+			file >> NewElement->SumStipend;
+			// id ����� ����� �� ���� ������ ����������
+            NewElement->id = buffer->id + 1; 
+            // �.�. ���� ������� ���� ��������� ��� ����� = NULL
+			NewElement->next = NULL; 
+			// ����������� ����� ������� � ������
+            buffer->next = NewElement;
+
+            buffer = NewElement; 
+			// ������ ����� ��������� �� ����� �������
+        }
+    }
+    else
+        return;
+    file.close(); // ��������� ����
+}
+
+void WriteIntoFile(StudentBaseDate* head) // ������ � ����
+{
+	
+    std::ofstream file;
+    file.open("StudentBaseDate.txt"); // ������� ���� 
+    if (file.is_open()) // ��������� ��������
+    {
+		// ��������� �� ���� ����� ������,
+		// ����� �� ������� ������ � ����
+		StudentBaseDate* buffer = head->next; 
+        while (buffer->next != NULL) 
+		// ���� ��������� next �� ������ NULL
+        {
+			file << buffer->group << ' ' <<
+			buffer->surname<< ' ' << buffer->name
+			<< ' ' << buffer->Credit�ard << 
+			' ' << buffer->stipend << ' ' <<
+			buffer->SumStipend << '\n';
+
+			// ���������� � ����
+            buffer = buffer->next; 
+			// ������ ��������� ��� �������� �� ������
+        }
+        file << buffer->group << ' ' << buffer->surname<<
+		' ' << buffer->name<< ' ' << buffer->Credit�ard<<
+		' ' << buffer->stipend << ' ' << buffer->SumStipend;
+		
+		// ���������� ��������� �������
+    }
+    else
+        return;
+    file.close(); // ��������� ����
 }
 
 int Menu()
