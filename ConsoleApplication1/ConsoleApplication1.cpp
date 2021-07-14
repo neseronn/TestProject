@@ -134,6 +134,10 @@ void _tmain()
 				if(a==0)
 				{
 					//kd
+					a = 0;
+					//fskfjaf
+					//afafafafdsgsg
+					return;
 				}
 				else if(0<a<10)
 				{
