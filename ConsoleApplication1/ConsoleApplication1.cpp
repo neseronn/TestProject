@@ -116,7 +116,15 @@ void _tmain()
 			break;
 			case PRINT_ONE_STUDENT:
 			{
-				//uiqquhfqbafnanlna
+				if()
+				{
+					//uiqquhfqbafnanlna
+					//oquhfhafjakf
+					//aofjkzc/ajalj
+					//aocjln
+					//aocjhadh
+					//apdmalkjdla
+				}
 			}
 			break;
 			case WRITE_INTO_FILE:
