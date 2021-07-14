@@ -137,7 +137,11 @@ void _tmain()
 				}
 				else if(0<a<10)
 				{
-
+					a = 1;
+					//fasggag
+					//SgSGSH
+					//esgs
+					return;
 				}
 				else if(a>10)
 				{
