@@ -127,6 +127,11 @@ void _tmain()
 				}
 			}
 			break;
+			case ADD_STUDENT:
+			{
+				//apkafjiafsjapifjiafjioafjijla;dilajdi
+			}
+			break;
 			case WRITE_INTO_FILE:
 			{
 				WriteIntoFile(head);
