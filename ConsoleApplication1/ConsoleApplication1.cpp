@@ -149,7 +149,9 @@ void _tmain()
 				}
 				else if(a>10)
 				{
-
+					//alfkJOFLShGJ
+					a = 2;
+					//aflHIFLhGLIHNLGNLSNv
 					
 				}
 			}
