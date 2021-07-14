@@ -130,6 +130,20 @@ void _tmain()
 			case ADD_STUDENT:
 			{
 				//apkafjiafsjapifjiafjioafjijla;dilajdi
+
+				if(a==0)
+				{
+					//kd
+				}
+				else if(0<a<10)
+				{
+
+				}
+				else if(a>10)
+				{
+
+					
+				}
 			}
 			break;
 			case WRITE_INTO_FILE:
