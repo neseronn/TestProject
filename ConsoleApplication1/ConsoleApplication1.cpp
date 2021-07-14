@@ -114,6 +114,11 @@ void _tmain()
 				<<std::endl;
 			}
 			break;
+			case PRINT_ONE_STUDENT:
+			{
+				//uiqquhfqbafnanlna
+			}
+			break;
 			case WRITE_INTO_FILE:
 			{
 				WriteIntoFile(head);
